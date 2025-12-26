@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
       e.preventDefault();
-      document.querySelector(anchor.getAttribute('href'))
+      document
+        .querySelector(anchor.getAttribute('href'))
         ?.scrollIntoView({ behavior: 'smooth' });
     });
   });
@@ -56,7 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const product = button.dataset.product;
       const message = `Olá! Tenho interesse no ${product}. Poderia me passar mais informações?`;
-      window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+      window.open(
+        `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,
+        "_blank"
+      );
     });
   });
 
@@ -70,42 +74,27 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const name = document.getElementById("name").value;
       const message = document.getElementById("message").value;
-
       const text = `Olá! Meu nome é ${name}. ${message}`;
-      window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`, "_blank");
+
+      window.open(
+        `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`,
+        "_blank"
+      );
     });
   }
 
   /* =========================
-     CAROUSEL DE PRODUTOS
+     CAROUSEL DE IMAGENS (PRODUTO)
   ========================= */
-  const track = document.querySelector('.carousel-track');
-  const productSlides = document.querySelectorAll('.product-card');
-  const nextBtn = document.querySelector('.next');
-  const prevBtn = document.querySelector('.prev');
+  document.querySelectorAll('.product-carousel').forEach(carousel => {
+    const images = carousel.querySelectorAll('img');
+    let index = 0;
 
-  let productIndex = 0;
-
-  function updateCarousel() {
-    if (!productSlides.length) return;
-    const slideWidth = productSlides[0].offsetWidth;
-    track.style.transform = `translateX(-${productIndex * slideWidth}px)`;
-  }
-
-  nextBtn?.addEventListener('click', () => {
-    if (productIndex < productSlides.length - 1) {
-      productIndex++;
-      updateCarousel();
-    }
+    setInterval(() => {
+      images[index].classList.remove('active');
+      index = (index + 1) % images.length;
+      images[index].classList.add('active');
+    }, 3000);
   });
-
-  prevBtn?.addEventListener('click', () => {
-    if (productIndex > 0) {
-      productIndex--;
-      updateCarousel();
-    }
-  });
-
-  window.addEventListener('resize', updateCarousel);
 
 });

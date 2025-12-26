@@ -279,57 +279,37 @@ section h2::after {
     display: block;
 }
 
-/* Carousel */
-.carousel-container {
-    position: relative;
-    overflow: hidden;
-    max-width: 1100px;
-    margin: 0 auto;
+.product-carousel {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  margin-bottom: 15px;
 }
 
-.carousel-track {
-    display: flex;
-    transition: transform 0.4s ease-in-out;
+.product-carousel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-.carousel-track .product-card {
-    min-width: 100%;
+.product-carousel img.active {
+  opacity: 1;
 }
 
-/* Botões */
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--primary-color);
-    border: none;
-    color: #fff;
-    font-size: 2rem;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 50%;
-    z-index: 10;
+@media (max-width: 768px) {
+  .product-carousel {
+    height: 180px;
+  }
 }
-
-.carousel-btn.prev {
-    left: 10px;
-}
-
-.carousel-btn.next {
-    right: 10px;
-}
-
-/* Desktop: mostra 2 ou 3 cards */
-@media (min-width: 768px) {
-    .carousel-track .product-card {
-        min-width: 50%;
-    }
-}
-
-@media (min-width: 1024px) {
-    .carousel-track .product-card {
-        min-width: 33.333%;
-    }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
 }
 
 
