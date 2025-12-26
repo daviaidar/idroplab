@@ -279,6 +279,60 @@ section h2::after {
     display: block;
 }
 
+/* Carousel */
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+}
+
+.carousel-track .product-card {
+    min-width: 100%;
+}
+
+/* Botões */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-color);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.carousel-btn.prev {
+    left: 10px;
+}
+
+.carousel-btn.next {
+    right: 10px;
+}
+
+/* Desktop: mostra 2 ou 3 cards */
+@media (min-width: 768px) {
+    .carousel-track .product-card {
+        min-width: 50%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .carousel-track .product-card {
+        min-width: 33.333%;
+    }
+}
+
+
 /* Sobre Nós */
 #about h2 {
   color: var(--light-text-color);
